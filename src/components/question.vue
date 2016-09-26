@@ -4,7 +4,9 @@
             <!--<li v-for=" n in 10" draggable=”true” style="height:30px;border:solid #cccccc;margin-top:20px; '">{{n}}-&#45;&#45;1111111</li>-->
         <!--</ul>-->
 
-    <div class="row" v-for="item in rows" id="{{$index}}" v-drag-and-drop  drop="handleDrop"  drag="handleDrag"  drag-end="handleDragEnd" drag-enter="handleDragEnter">
+    <div class="row" v-for="item in rows" id="{{$index}}" v-drag-and-drop  drop="handleDrop"
+         drag="handleDrag" drag-over="handleDragOver"  drag-end="handleDragEnd" drag-leave="handleDragLeave"
+    >
         <div class="title">
             <span style="font-size:30px;color:#ff7800">{{item.id}}</span>
             {{ item.content }}
@@ -28,7 +30,7 @@
 </template>
 <style>
     .right{float: right}
-    .row{width: 1000px;border: 1px solid #CCC;margin: 12px 0;padding: .5em;display: block;cursor: move}
+    .row{width: 1000px;border: 1px solid #CCC;margin: 12px 0;padding: .5em;display: block;}
 
     .foot{margin-top: 2em;color: #0074D9;font-size: 12px}
     .fav{margin-right: 20px}
@@ -52,6 +54,7 @@
 
     }
     .drag-over {
+
     }
     .drag-enter {
         color: green;
@@ -95,19 +98,19 @@
                 this.loggedEvent = 'handleDragStart';
             },
             handleDragOver: function(elem) {
-
                 this.loggedEvent = 'handleDragOver';
+                console.log('handleDragOver', elem.classList);
+                if(elem.classList.contains('row')){
+                    elem.classList.add('drag-over');
+                }
 
             },
             handleDragEnter: function(elem) {
-
                 this.loggedEvent = 'handleDragEnter';
-                console.log('handleDragEnter', elem.classList);
             },
             handleDragLeave: function(elem) {
-                // console.log('handleDragLeave', elem);
                 this.loggedEvent = 'handleDragLeave';
-
+                elem.classList.remove('drag-over','drag-enter');
             },
             handleDragEnd: function(elem) {
                 this.loggedEvent = 'handleDragEnd';
@@ -123,7 +126,6 @@
                 itemTwo.classList.remove('drag-enter');
             },
             handleDrag: function(elem) {
-                //console.log('handleDrag', elem);
                 this.loggedEvent = 'handleDrag';
             }
         }
