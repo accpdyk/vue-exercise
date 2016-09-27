@@ -1,18 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 import App from './App.vue'
-
 //组件导入
 import setting from './components/setting.vue'
 
 
-// new Vue({
-//   el: 'body',
-//   components: { App }
-// })
-
-
 Vue.use(VueRouter);
+Vue.use(VueResource);
+Vue.http.options.emulateJSON = true ;
+
 
 
 const router = new VueRouter({
@@ -54,6 +51,12 @@ router.map({
         name: 'question',
         'component': function(resolve) {
             require(['./components/question.vue'],resolve);
+        }
+    },
+    '/random/:type': {
+        name:'random',
+        'component': function(resolve){
+            require(['./components/random.vue'],resolve);
         }
     }
 

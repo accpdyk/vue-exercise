@@ -37,12 +37,19 @@ module.exports = {
           limit: 10000,
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test:/\.css$/,
+        loader:'style!css!autoprefixer'
       }
     ]
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: false,
+    hot:true,
+    inline:true,
+    port:9000
   },
   devtool: '#eval-source-map'
 }

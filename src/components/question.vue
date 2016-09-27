@@ -7,7 +7,7 @@
     <div class="row" v-for="item in rows" id="{{$index}}" v-drag-and-drop  drop="handleDrop"
          drag="handleDrag" drag-over="handleDragOver"  drag-end="handleDragEnd" drag-leave="handleDragLeave"
     >
-        <div class="title">
+        <div class="title" data-pictrue-id={{item.id}}>
             <span style="font-size:30px;color:#ff7800">{{item.id}}</span>
             {{ item.content }}
         </div>

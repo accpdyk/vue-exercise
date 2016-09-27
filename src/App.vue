@@ -18,18 +18,21 @@
 
     import headComponent  from './components/header.vue'
     import footerComponent from './components/footer.vue'
-
+    import store from './vuex/store'
+    import { increment,decrement } from './vuex/action'
     export default {
       data:function(){
          return { showMenu: true}
       } ,
+      store:store,
       components:{
          vHeader: headComponent,
          vFooter: footerComponent
       },
       computed:{
           showMenu:function(){
-              return this.$route.name !=='question';
+              //this.$route.name !=='question' ||
+              return  this.$route.name !=='random' ;
           }
       }
     }
