@@ -31,8 +31,8 @@
       },
       computed:{
           showMenu:function(){
-              //this.$route.name !=='question' ||
-              return  this.$route.name !=='random' ;
+              return this.$route.name !=='question';
+              //return  this.$route.name !=='random' ;
           }
       }
     }

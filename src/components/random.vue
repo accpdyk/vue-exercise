@@ -4,7 +4,7 @@
             <span class="nav"   v-bind:class="{'selected' : nav_tab }" @click="toggleNav('chapter')">章节</span>
             <span class="nav"   v-bind:class="{'selected' : !nav_tab }" @click="toggleNav('knowledge')">知识</span>
         </div>
-        yyy--{{ new_class_id }}
+        {{ new_class_id }}
         <div class="content" v-show="nav_tab">
             <div class="grade">
                 <div class="grade-child" @click="showGrade">1</div>

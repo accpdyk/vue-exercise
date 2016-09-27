@@ -4,19 +4,15 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import count from './modules/count'
+
 Vue.use(Vuex);
 
-const state = { count: 0 };
 
-//mutations
-const mutations = {
-    INCREMENT (state) { state.count++ ;},
-    DECREMENT (state) { state.count-- ;}
-
-};
 
 export default new Vuex.Store({
-    state,
-    mutations
+    modules:{
+        count
+    }
 });
  

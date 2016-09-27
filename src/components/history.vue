@@ -11,7 +11,7 @@
     export default{
         vuex: {
             getters: {
-                count: function(state){ return state.count ;}
+                count: function(state){ return state.count.num ;}
             },
             actions: {
                 increment,decrement
