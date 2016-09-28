@@ -21,7 +21,7 @@
             <span class="right fav  {{  !item.change_collect_type?'red':'blue'}}" @click="collect(item)" class="">
                 {{  item.change_collect_type?'加入收藏':'取消收藏'}}
             </span>
-            <span>{{item.id}}<<<>>>>难度:0.56 知识点1，知识点2，知识点3，</span>
+            <span>{{item.id}}难度:0.56 知识点1，知识点2，知识点3，</span>
         </div>
     </div>
 

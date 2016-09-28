@@ -1,12 +1,11 @@
 import Vue from 'vue'
+import VueValidator from 'vue-validator';
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import App from './App.vue'
 
-//组件导入
-import setting from './components/setting.vue'
 
-
+Vue.use(VueValidator);
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.http.options.emulateJSON = true ;
