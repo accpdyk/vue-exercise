@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import App from './App.vue'
+
 //组件导入
 import setting from './components/setting.vue'
 

@@ -19,9 +19,9 @@
             <div>&nbsp;</div>
             <div>
                 {{ countA }}
-                <!--<span class="operate" @click="increment">+</span><input v-model="countC" class="text"/><span class="operate" @click="decrement">-</span><br/>-->
+                <span class="operate" @click="plus('a')">+</span><input v-model="number.a" class="text"/><span class="operate" @click="minus('a')">-</span><br/>
                 <!--<span class="operate" @click="increment">+</span><input v-model="countB" class="text"/><span class="operate" @click="decrement">-</span><br/>-->
-                <span class="operate" @click="increment">+</span><input v-model="countA" class="text"/><span class="operate" @click="decrement">-</span><br/>
+                <span class="operate" @click="plus('b')">+</span><input v-model="number.b" class="text"/><span class="operate" @click="minus('b')">-</span><br/>
                 <span class="operate" @click="increment">+</span><input v-model="count" class="text"/><span class="operate" @click="decrement">-</span><br/>
             </div>
         </div>
@@ -51,10 +51,7 @@
         data(){
             return {
                 nav_tab:true,
-                numberA:0,
-                numberB:0,
-                numberC:0,
-                numberD:0,
+                number:{a:0,b:0,c:0},
                 new_class_id:''
             }
         },
@@ -64,16 +61,10 @@
 
             },
             plus:function(ele) {
-                if(ele == 'A') this.numberA = parseInt(this.numberA) + 1;
-                if(ele == 'B') this.numberB = parseInt(this.numberB) + 1;
-                if(ele == 'C') this.numberC = parseInt(this.numberC) + 1;
-                if(ele == 'D') this.numberD = parseInt(this.numberD) + 1;
+               this.number[ele]++;
             },
             minus:function(ele) {
-                if(ele == 'A') this.numberA = parseInt(this.numberA) - 1;
-                if(ele == 'B') this.numberB = parseInt(this.numberB) - 1;
-                if(ele == 'C') this.numberC = parseInt(this.numberC) - 1;
-                if(ele == 'D') this.numberD = parseInt(this.numberD) - 1;
+                this.number[ele]--;
             },
             showGrade:function() {
                 this.new_class_id =  Math.ceil(Math.random()*100);
@@ -81,10 +72,7 @@
         },
         vuex:{
             getters: {
-                count: function(state){ return state.count; },
-                countA:function(state){ return state.count },
-                countB:function(state){ return state.count },
-                countC:function(state){ return state.count }
+                count: function(state){ return state.count.num; }
             },
             actions: {
                 increment,decrement

@@ -22,7 +22,7 @@
     import { increment,decrement } from './vuex/action'
     export default {
       data:function(){
-         return { showMenu: true}
+         return { showMenu: true,routeHideName:['question','random']}
       } ,
       store:store,
       components:{
@@ -31,7 +31,7 @@
       },
       computed:{
           showMenu:function(){
-              return this.$route.name !=='question';
+              return !this.routeHideName.includes(this.$route.name);
               //return  this.$route.name !=='random' ;
           }
       }
