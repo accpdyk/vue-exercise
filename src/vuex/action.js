@@ -2,11 +2,6 @@
  * Created by dell on 2016/9/27.
  */
 
-export const increment = function ({ dispatch }){
-    return dispatch('INCREMENT');
-} ;
+export const increment = ({dispatch},ele)  =>  dispatch('INCREMENT',ele);
 
-
-export const decrement = function({ dispatch}){
-  return   dispatch('DECREMENT')
-};
+export const decrement = ({ dispatch},ele) =>  dispatch('DECREMENT',ele);

@@ -19,10 +19,10 @@
             <div>&nbsp;</div>
             <div>
                 {{ countA }}
-                <span class="operate" @click="plus('a')">+</span><input v-model="number.a" class="text"/><span class="operate" @click="minus('a')">-</span><br/>
+                <span class="operate" @click="increment('c')">+</span><input v-model="count.c" class="text"/><span class="operate" @click="decrement('c')">-</span><br/>
                 <!--<span class="operate" @click="increment">+</span><input v-model="countB" class="text"/><span class="operate" @click="decrement">-</span><br/>-->
-                <span class="operate" @click="plus('b')">+</span><input v-model="number.b" class="text"/><span class="operate" @click="minus('b')">-</span><br/>
-                <span class="operate" @click="increment">+</span><input v-model="count" class="text"/><span class="operate" @click="decrement">-</span><br/>
+                <span class="operate" @click="increment('b')">+</span><input v-model="count.b" class="text"/><span class="operate" @click="decrement('b')">-</span><br/>
+                <span class="operate" @click="increment('a')">+</span><input v-model="count.a" class="text"/><span class="operate" @click="decrement('a')">-</span><br/>
             </div>
         </div>
         <div class="content knowledge" v-show="!nav_tab">这里是知识</div>
@@ -51,7 +51,6 @@
         data(){
             return {
                 nav_tab:true,
-                number:{a:0,b:0,c:0},
                 new_class_id:''
             }
         },
@@ -60,19 +59,13 @@
                 this.nav_tab = (type=='chapter'?true:false);
 
             },
-            plus:function(ele) {
-               this.number[ele]++;
-            },
-            minus:function(ele) {
-                this.number[ele]--;
-            },
             showGrade:function() {
                 this.new_class_id =  Math.ceil(Math.random()*100);
             }
         },
         vuex:{
             getters: {
-                count: function(state){ return state.count.num; }
+                count: function(state){ return state.count }
             },
             actions: {
                 increment,decrement
