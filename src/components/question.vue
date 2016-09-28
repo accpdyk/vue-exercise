@@ -1,15 +1,18 @@
 <template>
-    <div>
+    <ul v-dnd-list :dnd-list="rows" :dnd-horizontal-list="false">
         <!--<ul>-->
             <!--<li v-for=" n in 10" draggable=”true” style="height:30px;border:solid #cccccc;margin-top:20px; '">{{n}}-&#45;&#45;1111111</li>-->
         <!--</ul>-->
 
-    <div class="row" v-for="item in rows" id="{{$index}}" v-drag-and-drop  drop="handleDrop"
-         drag="handleDrag" drag-over="handleDragOver"  drag-end="handleDragEnd" drag-leave="handleDragLeave"
-    >
-        <div class="title" data-pictrue-id={{item.id}}>
-            <span style="font-size:30px;color:#ff7800">{{item.id}}</span>
-            {{ item.content }}
+    <li class="row" v-for="item in rows" id="{{$index}}" v-dnd-draggable
+         :dnd-draggable="item"
+         :dnd-index="$index"
+         :dnd-data="rows"
+         dnd-effect-allowed="move"
+         dnd-dragend="dragend" >
+        <div class="title">
+            <span style="font-size:30px;color:#ff7800">{{$index +1 }}--{{item.id}}</span>
+          {{ item.content }}
         </div>
         <div class="resolve_div" v-if="!item.change_resolve_type">
             答案解析
@@ -23,15 +26,21 @@
             </span>
             <span>{{item.id}}难度:0.56 知识点1，知识点2，知识点3，</span>
         </div>
-    </div>
-
-    </div>
+    </li>
+    </ul>
+    <ul>
+        <li class="row">123</li>
+        <li class="row">456</li>
+        <li class="row">789</li>
+        <li class="row">325</li>
+    </ul>
 
 </template>
 <style>
     .right{float: right}
-    .row{width: 1000px;border: 1px solid #CCC;margin: 12px 0;padding: .5em;display: block;}
 
+     li.dndPlaceholder{height: 100px;background-color: #CCC}
+    .row,li{width: 1000px;border: 1px solid #CCC;margin: 12px 0;padding: .5em;display: block;}
     .foot{margin-top: 2em;color: #0074D9;font-size: 12px}
     .fav{margin-right: 20px}
     .resolve,.fav{cursor: pointer}
@@ -48,9 +57,9 @@
         -webkit-user-drag: element;
     }
     .dragging {
-        opacity: 0.8;
-        color: #FF7800;
-        border: solid red;
+        /*opacity: 1.0;*/
+        /*color: #FF7800;*/
+        /*border: solid red;*/
 
     }
     .drag-over {
@@ -64,8 +73,10 @@
 </style>
 <script>
     import Vue from 'vue'
-    import dragAndDrop from 'vue-drag-and-drop'
-    Vue.use(dragAndDrop);
+    import VueDragAndDropList from 'vue-drag-and-drop-list';
+
+    Vue.use(VueDragAndDropList);
+
 
     export default{
         data(){
@@ -81,7 +92,8 @@
                     {change_resolve_type:true,change_collect_type:true,id:8,content:'通过在dragstart事件监听器中设置 effectAllowed 属性，你可以为拖动源指定这三种操作中的某一种。'},
                     {change_resolve_type:true,change_collect_type:true,id:9,content:'122121'},
                     {change_resolve_type:true,change_collect_type:true,id:10,content:'65646746165'}
-                ]
+                ],
+                selected:null
             }
         },
         methods:{
@@ -93,40 +105,12 @@
             collect:function(item){
                 item.change_collect_type = !item.change_collect_type ;
             },
-            handleDragStart: function(elem) {
-                // console.log('handleDragStart', elem);
-                this.loggedEvent = 'handleDragStart';
+            selectedEvent: function(item){
+                this.selected = item;
             },
-            handleDragOver: function(elem) {
-                this.loggedEvent = 'handleDragOver';
-                console.log('handleDragOver', elem.classList);
-                if(elem.classList.contains('row')){
-                    elem.classList.add('drag-over');
-                }
-
-            },
-            handleDragEnter: function(elem) {
-                this.loggedEvent = 'handleDragEnter';
-            },
-            handleDragLeave: function(elem) {
-                this.loggedEvent = 'handleDragLeave';
-                elem.classList.remove('drag-over','drag-enter');
-            },
-            handleDragEnd: function(elem) {
-                this.loggedEvent = 'handleDragEnd';
-                console.log('handleDragEnd', elem.classList);
-
-
-            },
-            handleDrop: function(itemOne, itemTwo) {
-                this.loggedEvent = 'handleDrop';
-                var dummy = this.rows[itemOne.id];
-                this.rows.$set(itemOne.id, this.rows[itemTwo.id]);
-                this.rows.$set(itemTwo.id, dummy);
-                itemTwo.classList.remove('drag-enter');
-            },
-            handleDrag: function(elem) {
-                this.loggedEvent = 'handleDrag';
+            //结束事件
+            dragend:function(event,index) {
+              //  alert(index);
             }
         }
     }
