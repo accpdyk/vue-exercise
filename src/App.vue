@@ -10,6 +10,7 @@
         <!-- 路由外链 -->
         <router-view></router-view>
         <v-footer></v-footer>
+        <div v-show="loading" class="loading">rr</div>
     </div>
 
 </template>
@@ -22,7 +23,7 @@
     import { increment,decrement } from './vuex/action'
     export default {
       data:function(){
-         return { showMenu: true,routeHideName:['question','random']}
+         return { showMenu: true,routeHideName:['question','random'],loading:false}
       } ,
       store:store,
       components:{
@@ -44,5 +45,6 @@
     .menu a{display: block;width:200px;background-color: #CCC;text-align: center;
         line-height: 60px;border-bottom: 1px solid #999;cursor: pointer;color: green;}
     .menu  a.v-link-active{color: #ff7800}
+    .loading{position: fixed;background-color: darkgreen;opacity: .5;top: 0;width:100%;height: 100%}
 
 </style>

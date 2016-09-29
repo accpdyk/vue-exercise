@@ -12,6 +12,7 @@ Vue.http.options.emulateJSON = true ;
 
 
 
+
 const router = new VueRouter({
     hashbang:false
 });
@@ -62,6 +63,14 @@ router.map({
 
 });
 
+//--请求前路由处理
 
+Vue.http.interceptors.push((request, next) => {
+    router.app.loading = true;
+    next((response) => {
+        router.app.loading = false;
+        return response
+    });
+});
 
 router.start(App, '#app');
