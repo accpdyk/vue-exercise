@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <div style="padding:2em">
         <button class="grade-child" @click="showSelect('a')" v-bind:class="{'selected':selectShow.a}">AAA</button>
         <button class="grade-child" @click="showSelect('b')" v-bind:class="{'selected':selectShow.b}">BBB</button>
