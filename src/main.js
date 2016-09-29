@@ -73,4 +73,7 @@ Vue.http.interceptors.push((request, next) => {
     });
 });
 
+//设置默认首页
+router.redirect({'/':'/exam-paper'});
+
 router.start(App, '#app');
