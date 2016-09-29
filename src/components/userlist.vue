@@ -10,12 +10,14 @@
     .row{width: 300px;display: inline-block;float: left;text-align: left}
 </style>
 <script>
+    import { API_ROOT }  from '../config'
+
     export default {
         data(){
            return {rows:[1,2,3],items:[]}
         },
         created: function() {
-            this.$http.get('http://m.dyk.mschool.cn/test').then(function(response) {
+            this.$http.get(API_ROOT+ '/test').then(function(response) {
                  this.$set('rows', response.body);
             }, function (response) {
                 // error callback

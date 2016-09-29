@@ -2,7 +2,7 @@
  * Created by qing on 16/9/27.
  */
 
-const state = { num: 0,a:0,b:0,c:0 };
+const state = { num: 0,a:5,b:8,c:10 };
 
 //mutations
 const mutations = {

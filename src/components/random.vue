@@ -17,13 +17,8 @@
                 <div class="grade-child">8</div>
             </div>
             <div>&nbsp;</div>
-            <div>
-                {{ countA }}
-                <span class="operate" @click="increment('c')">+</span><input v-model="count.c" class="text"/><span class="operate" @click="decrement('c')">-</span><br/>
-                <!--<span class="operate" @click="increment">+</span><input v-model="countB" class="text"/><span class="operate" @click="decrement">-</span><br/>-->
-                <span class="operate" @click="increment('b')">+</span><input v-model="count.b" class="text"/><span class="operate" @click="decrement('b')">-</span><br/>
-                <span class="operate" @click="increment('a')">+</span><input v-model="count.a" class="text"/><span class="operate" @click="decrement('a')">-</span><br/>
-            </div>
+            <hr/>
+            <random-foot></random-foot>
         </div>
         <div class="content knowledge" v-show="!nav_tab">这里是知识</div>
     </div>
@@ -39,13 +34,15 @@
     .grade-child{
         display: inline-block;width: 80px;line-height: 3.0;border: 1px solid #CCC; margin-right: 2em;
         text-align: center;font-weight: 800;
+        cursor: pointer;
     }
     .text{width:80px;height: 30px;vertical-align: middle;margin: 6px 24px;text-align: center}
     .operate{height: 30px;display: inline-block;width: 30px;border: 1px solid #CCC;line-height: 30px;text-align: center;cursor: pointer;}
 
 </style>
 <script>
-    import { increment,decrement} from '../vuex/action'
+
+    import randomFoot from './random_foot.vue'
 
     export default{
         data(){
@@ -54,6 +51,9 @@
                 new_class_id:''
             }
         },
+        components:{
+            randomFoot
+        },
         methods: {
             toggleNav:function(type) {
                 this.nav_tab = (type=='chapter'?true:false);
@@ -61,14 +61,6 @@
             },
             showGrade:function() {
                 this.new_class_id =  Math.ceil(Math.random()*100);
-            }
-        },
-        vuex:{
-            getters: {
-                count: function(state){ return state.count }
-            },
-            actions: {
-                increment,decrement
             }
         }
     }
