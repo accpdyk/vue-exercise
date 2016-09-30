@@ -4,7 +4,7 @@
         <button class="grade-child" @click="showSelect('b')" v-bind:class="{'selected':selectShow.b}">BBB</button>
         <button class="grade-child" @click="showSelect('c')" v-bind:class="{'selected':selectShow.c}">CCC</button>
         <div>
-            <div v-if="selectShow.c">
+            <div v-if="selectShow.c" transition="expand">
                 <span>选项111</span>
                 <span class="operate" @click="increment('c')">+</span>
                 <input v-model="count.c" class="text" />
@@ -12,7 +12,7 @@
                 <span @click="hideSelect('c')">清除</span>
             </div>
 
-            <div v-if="selectShow.a">
+            <div v-if="selectShow.a" transition="expand">
                 <span>选项222</span>
                 <span class="operate" @click="increment('a')">+</span>
                 <input v-model="count.a" class="text"/>
@@ -20,7 +20,7 @@
                 <span @click="hideSelect('a')">清除</span>
             </div>
 
-            <div v-if="selectShow.b">
+            <div v-if="selectShow.b" transition="expand">
                 <span>选项333</span>
                 <span class="operate" @click="increment('b')">+</span>
                 <input v-model="count.b" class="text"/>

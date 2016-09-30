@@ -26,7 +26,6 @@
           <!-- 自定义知识--->
           <knowledge></knowledge>
         </div>
-        <popup v-if="showPopup"></popup>
     </div>
 
 
@@ -52,7 +51,6 @@
 
     import randomFoot from './random_foot.vue'
     import knowledge  from './knowledge.vue'
-    import popup from './popup.vue'
 
     import { get_grade_one } from '../vuex/action'
 
@@ -60,12 +58,11 @@
         data(){
             return {
                 nav_tab:true,
-                new_class_id:'',
-                showPopup:false
+                new_class_id:''
             }
         },
         components:{
-            randomFoot,knowledge,popup
+            randomFoot,knowledge
         },
         methods: {
             toggleNav:function(type) {

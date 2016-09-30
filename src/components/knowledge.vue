@@ -9,6 +9,7 @@
         <div>输出结果：{{ multScore | json}}</div>
 
         <button class="submit" @click="dataSubmit">保存</button>
+        <popup v-if="showPopup"></popup>
     </div>
 
 
@@ -17,18 +18,19 @@
    .row{line-height: 36px;}
    .score{height: 24px;text-align: center}
    .submit{width: 200px;height: 30px;}
-
 </style>
 <script>
 
     import { API_ROOT } from '../config'
+    import popup from './popup.vue'
 
     export default{
         data(){
             return{
                 singleScore:5,
                 multScore:[],
-                isDiy:true
+                isDiy:true,
+                showPopup:false
             }
         },
         methods:{
@@ -36,17 +38,16 @@
               this.isDiy = !this.isDiy;
           },
           dataSubmit:function(){
-
               //--
               this.$http.post(API_ROOT+'/test/app',{app:12}).then(function(response){
-                     alert('保存成功');
+                    this.showPopup = true ;
               },function(response){
 
               });
           }
         },
         components:{
-
+           popup
         }
     }
 </script>

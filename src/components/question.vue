@@ -9,12 +9,12 @@
          :dnd-index="$index"
          :dnd-data="rows"
          dnd-effect-allowed="move"
-         dnd-dragend="dragend" >
+         dnd-dragend="dragend"   transition="stagger" stagger="100">
         <div class="title">
             <span style="font-size:30px;color:#ff7800">{{$index +1 }}--{{item.id}}</span>
           {{ item.content }}
         </div>
-        <div class="resolve_div" v-if="!item.change_resolve_type">
+        <div class="resolve_div" v-if="!item.change_resolve_type" transition="expand">
             答案解析
         </div>
         <div class="foot">
@@ -82,7 +82,7 @@
         data(){
             return{
                 rows:[
-                    {change_resolve_type:true,change_collect_type:true,id:1,content:'为所需拖拽的元素设置属性 draggable属性。为 dragstart 事件添加侦听在侦听中设置拖拽数据。'},
+                    {change_resolve_type:true,change_collect_type:true,id:1,content:'1111111111需拖拽的元素设置属性 draggable属性。为 dragstart 事件添加侦听在侦听中设置拖拽数据。'},
                     {change_resolve_type:true,change_collect_type:true,id:2,content:'div draggable="true" event.dataTransfer.setData(xt may be dragged>This text <strong>may</strong> be dragged</div'},
                     {change_resolve_type:true,change_collect_type:true,id:3,content:'在这个例子中，通过使用 ondragstart 属性来添加一个 dragstart 事件监听器。'},
                     {change_resolve_type:true,change_collect_type:true,id:4,content:'所有的拖拽事件都有一个属性——dataTransfer，它包含着拖拽数据。'},

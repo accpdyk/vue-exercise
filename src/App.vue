@@ -46,5 +46,20 @@
         line-height: 60px;border-bottom: 1px solid #999;cursor: pointer;color: green;}
     .menu  a.v-link-active{color: #ff7800}
     .loading{position: fixed;background-color: darkgreen;opacity: .5;top: 0;width:100%;height: 100%}
+    /* 必需 */
+    .expand-transition {
+        transition: all .3s ease;
+        height: 30px;
+        padding: 10px;
+        overflow: hidden;
+    }
+
+    /* .expand-enter 定义进入的开始状态 */
+    /* .expand-leave 定义离开的结束状态 */
+    .expand-enter, .expand-leave {
+        height: 0;
+        padding: 0 10px;
+        opacity: 0;
+    }
 
 </style>
