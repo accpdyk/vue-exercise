@@ -51,8 +51,17 @@ module.exports = {
     inline:true,
     port:9000
   },
-  devtool: '#eval-source-map'
-}
+  devtool: '#eval-source-map',
+
+  //--监听
+  watchOptions: {
+    // Delay the rebuild after the first change
+    aggregateTimeout: 300,
+    // Poll using interval (in ms, accepts boolean too)
+    poll: 1000
+  }
+
+};
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'

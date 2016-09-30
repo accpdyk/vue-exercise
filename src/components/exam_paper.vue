@@ -6,8 +6,8 @@
         </div>
         <div class="field">
             <label>出题方式</label>
-            <a v-link="{name:'question',params:{ type: 'manual'} }" target="_blank">手工出题</a>
-            <span v-link="{name:'random',params:{ type: selectedKeyValue} }" target="_blank">随机出题</span>
+            <a v-link="{name:'question',params:{ type: 'manual'} }" target="_blank" class="span">手工出题</a>
+            <span v-link="{name:'random',params:{ type: selectedKeyValue} }" target="_blank" class="span">随机出题</span>
         </div>
         <router-view></router-view>
         <p>{{ $route.path}} </p>
@@ -16,7 +16,7 @@
 </template>
 <style>
    .field{ text-align: left}
-   .field span{display: inline-block;width: 80px;line-height: 30px;background-color: #CCC;margin: 12px;font-size: 12px;cursor: pointer;text-align: center}
+   .field span,.span{display: inline-block;width: 80px;line-height: 30px;background-color: #CCC;margin: 12px;font-size: 12px;cursor: pointer;text-align: center}
    .field span.selected{color:#fff;background-color: orangered}
 </style>
 <script>

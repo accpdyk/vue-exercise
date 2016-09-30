@@ -1,21 +1,10 @@
 <template>
     <div class="history">
-        CLICKED: {{ count }} Times
-        <button @click="increment">Plus</button>
-        <button @click="decrement">Minus</button>
+          历史出卷
     </div>
 </template>
 <style></style>
 <script>
-    import {increment,decrement} from '../vuex/action'
-    export default{
-        vuex: {
-            getters: {
-                count: function(state){ return state.count.num ;}
-            },
-            actions: {
-                increment,decrement
-            }
-        }
-    }
+
+    export default{}
 </script>
