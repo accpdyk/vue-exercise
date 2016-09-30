@@ -10,7 +10,7 @@
         <!-- 路由外链 -->
         <router-view></router-view>
         <v-footer></v-footer>
-        <div v-show="loading" class="loading">rr</div>
+        <div v-show="loading" class="loading">数据请求中。。。</div>
     </div>
 
 </template>
@@ -45,7 +45,7 @@
     .menu a{display: block;width:200px;background-color: #CCC;text-align: center;
         line-height: 60px;border-bottom: 1px solid #999;cursor: pointer;color: green;}
     .menu  a.v-link-active{color: #ff7800}
-    .loading{position: fixed;background-color: darkgreen;opacity: .5;top: 0;width:100%;height: 100%}
+    .loading{position: fixed;opacity: .5;top: 0;width:100%;color: red;height: 100px;z-index: 10;text-align: center}
     /* 必需 */
     .expand-transition {
         transition: all .3s ease;
