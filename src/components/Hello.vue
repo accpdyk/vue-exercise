@@ -1,53 +1,66 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
-  </div>
+    <div class="main">
+      <div class="child" @mousedown="setDown" >
+        ddd
+      </div>
+    </div>
+    <svg id="svg">
+      <rect x="100" y="50" width="300" height="200" style="fill: #ff7800;stroke-width:3;stroke:rgb(0,0,0)" @click="show" />
+      <g fill="none" stroke="black"  >
+        <title>SVG Title Demo example</title>
+        <path stroke="blue" d="M5 20 1215 0" />
+        <path stroke-dasharray="5,10" d="M100 350 1000 350" stroke-width="1" stroke="red" id="line"/>
+      </g>
+      <use xlink:href="#line" x="50" y="50"/>
+      <text x="10" y="20" style="fill:red;">这里有几行文字：
+        <tspan x="10" y="45">这是第一行文字。</tspan>
+        <tspan x="10" y="70">第二行文字在这里。</tspan>
+      </text>
+    </svg>
+ </div>
 </template>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+  #svg{
+    width: 900px;height: 300px;border: solid;
+  }
+  .main{
+    width: 1000px;height: 600px;background-color: antiquewhite;
+    border:solid;position: relative;
+  }
+  .child{
+    position: absolute;right: -15px;
+    top:300px;background-color: #FF7800;width: 30px;height: 30px;
+    cursor: e-resize;
+  }
+</style>
 
 <script>
 export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      isMouseDown:'N'
     }
+  },
+  methods: {
+    show:function(){
+      alert('test')
+    },
+    setDown:function(event){
+      console.log(event);
+    },
+    resizeDiv:function(event){
+
+      if(this.isMouseDown == 'Y'){
+        console.log(this.isMouseDown);
+     }
+    }
+
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-</style>
