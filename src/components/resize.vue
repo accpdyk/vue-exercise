@@ -1,69 +1,85 @@
 <template>
-  <div>
-    <div class="resizable draggy-idle" id="parent">
-    <div id="child" class="child">d</div>
+  <div class="area">
+    <div class="resize" id="resize">
+        <div class="operate-left" id="left"></div>
     </div>
   </div>
 </template>
 <style>
-.child{
-  width: 300px;border: 1px solid;
-  margin: 100px 0 ;
+.area{
+    width: 600px;height: 600px;position: relative;border: 2px solid #ddd;
+    margin: 60px  auto;
 }
+    .resize{
+        width: 100px;height: 80px;background-color: bisque;
+        position: relative;
+        top: 100px;left: 100px;
+    }
+    .operate-left{
+        position: absolute;right: -3px;width: 6px;background-color: #ff3228;height: 20px;
+        top:30px;cursor: e-resize;
+    }
+    .operate-top{
+        position: absolute;top: -3px;width: 20px;background-color: #ff3228;height: 6px;
+        left:40px;cursor: s-resize;
+    }
 </style>
 
 <script>
 export default {
   data: function() {
-    return {}
+    return {
+      startX:0,
+      startY:0,
+      resizeStartWidth:0
+    }
   },
   methods:{
-    show:function(){
+    show(){
       console.log(123);
+    },
+    startResize(e){
+      e.preventDefault();
+      this.startX = e.clientX;
+      this.startY = e.clientY;
+      this.resizeStartWidth = document.getElementById('resize').clientWidth;
+      this.addEvent(document,'mousemove',this.resize);
+      this.addEvent(document,'mouseup',this.endResize)
+    },
+    resize(e){
+      e.stopPropagation();
+      document.getElementById('resize').style.width = (this.resizeStartWidth+e.clientX-this.startX) +'px';
+    },
+    endResize(e){
+        this.removeEvent(document,'mousemove',this.resize);
+        this.removeEvent(document,'mouseup',this.endResize);
+    },
+    addEvent( obj, type, fn ) {
+      if ( obj.attachEvent ) {
+        obj['e'+type+fn] = fn;
+        obj[type+fn] = function(){obj['e'+type+fn]( window.event );}
+        obj.attachEvent( 'on'+type, obj[type+fn] );
+      } else
+        obj.addEventListener( type, fn, false );
+    },
+    removeEvent( obj, type, fn ) {
+      if ( obj.detachEvent ) {
+        obj.detachEvent( 'on'+type, obj[type+fn] );
+        obj[type+fn] = null;
+      } else
+        obj.removeEventListener( type, fn, false );
     }
   },
   mounted(){
-    var obj  = document.getElementById('child');
-    console.log(obj);
-    var resizable = new Resizable(obj, {
-      within: document.getElementById('parent'),
-      handles: 's, se, e',
-      threshold: 10,
-      draggable: false
-    });
-    resizable.on('resize', function(){
-      console.log(456);
-    });
+
+    this.addEvent(document.getElementById('left'),'mousedown',this.startResize)
   }
+
 }
 
 
 
-function ResizerDemo(element) {
-  element = $(element);
-  let handler = $('<div class="resizerDemo-handler"></div>');
-  let info = $('<div class="resizerDemo-info"></div>');
 
-  element.append(handler);
-  element.append(info);
-
-  let hammer = new Hammer(element[0], {recognizers: [
-    [Hammer.Pan, { threshold: 0}]
-  ]});
-
-  let startWidth;
-  element.on('mousedown', function(e){
-    e.preventDefault();
-  });
-  hammer.on('panstart', function(e) {
-    startWidth = element[0].clientWidth;
-  });
-
-  hammer.on('panmove', function(e) {
-    element[0].style.width = (startWidth + e.deltaX) + 'px';
-    info.html(element[0].clientWidth + 'px x ' + element[0].clientHeight + 'px');
-  })
-}
 
 
 </script>

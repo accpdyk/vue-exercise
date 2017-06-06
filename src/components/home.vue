@@ -105,9 +105,6 @@
 
 <script>
   import Vue from 'vue';
-  import Hammer from 'hammer';
-  Vue.use(Hammer);
-
   export default {
   data () {
     return {
