@@ -1,13 +1,24 @@
 <template>
-  <div class="area">
-    <div class="resize" id="resize">
-        <div class="operate-left" id="left"></div>
+    <div>
+        <div class="area">
+            <div class="resize" id="resize">
+                <div class="operate-left" id="left"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="parent">
+                <div class="child">A</div>
+                <div class="child orange">B</div>
+                <div class="child">C</div>
+            </div>
+        </div>
+        <div  style="display: flex">
+            <div style=""></div>
+        </div>
     </div>
-  </div>
 </template>
 <style>
 .area{
-    width: 600px;height: 600px;position: relative;border: 2px solid #ddd;
+    width: 1400px;height: 600px;border: 2px solid #ddd;
     margin: 60px  auto;
 }
     .resize{
@@ -23,6 +34,12 @@
         position: absolute;top: -3px;width: 20px;background-color: #ff3228;height: 6px;
         left:40px;cursor: s-resize;
     }
+    .clear{clear: both}
+    .parent{background-color: #ccc;margin-top: 200px;width: 600px;}
+    .child{display: inline-block;width: 200px;text-align: center;}
+    .child:first-child{background-color: cadetblue}
+    .child:last-child{background-color: rosybrown}
+    .orange{background-color: orangered}
 </style>
 
 <script>
@@ -32,6 +49,7 @@ export default {
       startX:0,
       startY:0,
       resizeStartWidth:0
+
     }
   },
   methods:{
@@ -71,15 +89,10 @@ export default {
     }
   },
   mounted(){
-
     this.addEvent(document.getElementById('left'),'mousedown',this.startResize)
   }
 
 }
-
-
-
-
 
 
 </script>
